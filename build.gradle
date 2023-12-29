@@ -62,7 +62,7 @@ NMS_BINDINGS.each {
         dependencies {
             implementation project(":core")
             compileOnly "org.spigotmc:spigot-api:${value}"
-            //compileOnly "org.bukkit:craftbukkit:${value}:remapped-mojang" //[NMS]
+            compileOnly "org.bukkit:craftbukkit:${value}:remapped-mojang" //[NMS]
         }
         def buildToolsJar = new File(rootProject.buildDir, "tools/BuildTools.jar")
         def specialSourceJar = new File(rootProject.buildDir, "tools/SpecialSource.jar")
