@@ -33,7 +33,9 @@ jobs:
       - name: Setup build cache
         uses: actions/cache@v2.1.6
         with:
-          path: ~/.gradle/caches
+          path: |
+            ~/.gradle/caches
+            nms/*/buildtools
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle.kts') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
