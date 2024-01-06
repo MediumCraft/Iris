@@ -224,6 +224,7 @@ allprojects {
         maven { url "https://repo.triumphteam.dev/snapshots" }
         maven { url "https://repo.mineinabyss.com/releases" }
         maven { url 'https://hub.jeff-media.com/nexus/repository/jeff-media-public/' }
+        maven { url 'https://libraries.minecraft.net' }
     }
 
     dependencies {
@@ -251,6 +252,9 @@ allprojects {
         compileOnly 'rhino:js:1.7R2'
         compileOnly 'com.github.ben-manes.caffeine:caffeine:3.0.6'
         compileOnly 'org.apache.commons:commons-lang3:3.12.0'
+
+        // Brigadier
+        compile 'com.mojang:brigadier:1.0.18'
     }
 
     /**
