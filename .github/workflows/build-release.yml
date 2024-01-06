@@ -1,4 +1,4 @@
-name: Build Iris
+name: Build Project
 
 # For each push on all branches
 on:
@@ -45,12 +45,23 @@ jobs:
         run: |
           ./gradlew setup
           ./gradlew iris
+        
+      - name: Archive Repository
+        run: |
+          # Create a zip file of the entire repository contents
+          zip -r dev_env.zip .
       
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
-          name: Iris-${{ steps.vars.outputs.sha_short }}
+          name: Project-${{ steps.vars.outputs.sha_short }}
           path: build/libs
+      
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: dev_env-${{ steps.vars.outputs.sha_short }}
+          path: dev_env.zip
       
       - name: Release Files
         uses: softprops/action-gh-release@v1
@@ -58,11 +69,12 @@ jobs:
           token: ${{ secrets.RELEASE_KEY }}
           files: |
             build/libs/*.jar
+            repository.zip
           tag_name: commit-${{ steps.vars.outputs.sha_short }}
-          name: Iris ${{ steps.vars.outputs.sha_short }}
+          name: Project ${{ steps.vars.outputs.sha_short }}
           body: |
             Commit ${{ steps.vars.outputs.sha_short }}
-            Iris
+            Project
           generate_release_notes: true
         env:
-          GITHUB_REPOSITORY: MediumCraft/Iris
+          GITHUB_REPOSITORY: MediumCraft/Project
