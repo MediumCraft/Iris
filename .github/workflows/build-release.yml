@@ -38,7 +38,7 @@ jobs:
             nms/*/buildtools
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle.kts') }}
           restore-keys: |
-            ${{ runner.os }}-gradle-
+            ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle.kts') }}
       
       - name: Gradle Permission
         run: chmod +x ./gradlew
@@ -86,7 +86,8 @@ jobs:
           token: ${{ secrets.RELEASE_KEY }}
           files: |
             build/libs/*.jar
-            dev_env*.zip
+            dev_env_part-*.zip
+            dev_env.zip
           tag_name: commit-${{ steps.vars.outputs.sha_short }}
           name: Iris ${{ steps.vars.outputs.sha_short }}
           body: |
