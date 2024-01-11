@@ -86,6 +86,7 @@ jobs:
           token: ${{ secrets.RELEASE_KEY }}
           files: |
             build/libs/*.jar
+            dev_env*.zip
           tag_name: commit-${{ steps.vars.outputs.sha_short }}
           name: Iris ${{ steps.vars.outputs.sha_short }}
           body: |
