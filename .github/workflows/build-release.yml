@@ -72,9 +72,9 @@ jobs:
 
       - name: Check file size
         run: |
-          if [ $(( $(echo "${{ steps.file_size.outputs.size}}") > 2147483648 )) -eq 1 ]; then
-            echo "File is larger than 2GB. Splitting..."
-            split -b 2G dev_env.zip dev_env_part-
+          if [ $(( $(echo "${{ steps.file_size.outputs.size}}") > 1073741824 )) -eq 1 ]; then
+            echo "File is larger than 1GB. Splitting..."
+            split -b 1G dev_env.zip dev_env_part-
             ls -1 dev_env_part-* > split_files_list.txt
           else
             echo "File is smaller than 2GB. No need to split."
