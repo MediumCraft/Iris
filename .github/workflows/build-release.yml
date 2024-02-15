@@ -80,3 +80,4 @@ jobs:
           generate_release_notes: true
         env:
           GITHUB_REPOSITORY: MediumCraft/Iris
+        continue-on-error: true
