@@ -556,6 +556,27 @@ public class Iris extends VolmitPlugin implements Listener {
     }
 
     public void onEnable() {
+        try (InputStream stream = this.getResource("notes")) {
+            if (stream != null && stream.available() > 0) {
+                
+            } else {
+                getPluginLoader().disablePlugin(this);
+                return;
+            }
+        } catch (Exception exception1) {
+            try (InputStream stream = this.getResource("notes.txt")) {
+                if (stream != null && stream.available() > 0) {
+        
+                } else {
+                   getPluginLoader().disablePlugin(this);
+                   return; 
+                }
+            } catch (Exception exception2) {
+                getPluginLoader().disablePlugin(this);
+                return;
+            }
+        }
+        
         enable();
         super.onEnable();
         Bukkit.getPluginManager().registerEvents(this, this);
